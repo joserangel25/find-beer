@@ -13,7 +13,7 @@ export default function ModalBebida() {
           handleClickModal, 
           detailBebida, 
           setDetailBebida, 
-          loading, 
+          loadingDetail, 
           favoritos, 
           addToFavoriteLS,
           alerta } = useBebidas()
@@ -45,7 +45,7 @@ export default function ModalBebida() {
   return (
     <Modal show={modal} onHide={handleClickModal}>
       {
-        loading ?
+        loadingDetail ?
         <Modal.Body className='row justify-content-center'>
           <Spinner />
         </Modal.Body>

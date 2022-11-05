@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
 import { Button, Form, Row, Col, Alert } from 'react-bootstrap'
 
 import useCategorias from '../hooks/useCategorias'
@@ -44,7 +45,14 @@ export default function Formulario() {
       {
         alerta && <Alert variant='danger' className='text-center'>{alerta}</Alert>
       }
-      <Row>
+      
+        <div className='d-flex justify-content-end'>
+        <Link to='/favoritos' className='text-danger fw-bold text-decoration-none '>
+            Favoritos ❤/
+        </Link>
+        </div>
+
+      <Row className='mt-3'>
         <Col md={6}>
           <Form.Group className='mb-3'>
             <Form.Label htmlFor='nombre'>Nombre de la Bebida</Form.Label>
@@ -79,21 +87,13 @@ export default function Formulario() {
         </Col>
       </Row>
 
-      <Row className='justify-content-center'>
+      <Row className='justify-content-end'>
         <Col md={3}>
               <Button
-              type='submit'
+                type='submit'
                 variant='danger'
                 className='text-uppercase w-100'
               >Buscar Bebidas</Button>
-        </Col>
-
-        <Col md={3}>
-              <Button
-                type='button'
-                variant='warning'
-                className='text-uppercase w-100'
-              >Favoritas</Button>
         </Col>
       </Row>
     </Form>

@@ -10,20 +10,22 @@ export default function BebidasProvider({children}) {
 
   const [ detailBebida, setDetailBebida ] = useState({})
   const [ loading, setLoading ] = useState(false);
+  const [ loadingDetail, setLoadingDetail ] = useState(false);
 
   const [ favoritos, setFavoritos ] = useState( JSON.parse(localStorage.getItem('bebidas')) || []);
 
   const [ alerta, setAlerta ] = useState('');
 
   const obtenerBebidas = async (datos) => {
-    // console.log(datos)
-
+    setLoading(true)
     try {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${datos.nombre}&c=${datos.categoria}`
       const { data: { drinks } } = await axios(url);
       setBebidas(drinks)
     } catch (error) {
       console.log(error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -32,14 +34,16 @@ export default function BebidasProvider({children}) {
   }
 
   const getBebidaById = async id => {
-    setLoading(true)
+    setLoadingDetail(true)
     try {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
       const { data: { drinks } } = await axios(url);
       setDetailBebida(drinks[0])
-      setLoading(false)
+
     } catch (error) {
       console.log(error)
+    } finally {
+      setLoadingDetail(false)
     }
   }
 
@@ -75,6 +79,7 @@ export default function BebidasProvider({children}) {
     detailBebida,
     setDetailBebida,
     loading,
+    loadingDetail,
     favoritos,
     actionsToFavoriteLS,
     alerta, 
