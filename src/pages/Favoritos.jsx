@@ -8,7 +8,10 @@ function Favoritos() {
 
   if(!favoritos.length){
     return (
-      <h2 className='my-3 text-center text-danger'>No tienes bebidas Favoritas aún</h2>
+      <>
+        <Link to='/' className='text-danger fw-bold text-decoration-none'>Volver al Home 🏚/</Link>
+        <h2 className='my-3 text-center text-danger'>No tienes bebidas Favoritas aún</h2>
+      </>
     )
   } else {
       return (

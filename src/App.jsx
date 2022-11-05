@@ -19,7 +19,6 @@ function App() {
 
         <Container className='mt-5'>
           <BrowserRouter>
-            {/* <Formulario /> */}
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/favoritos' element={<Favoritos />} />
