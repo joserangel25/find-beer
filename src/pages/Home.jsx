@@ -7,11 +7,13 @@ import Cargando from '../components/Spinner';
 import useBebidas from '../hooks/useBebidas'
 
 export default function Home() {
+
   const { loading, bebidas } = useBebidas();
 
   return (
     <>
       <Formulario />
+
       {
         loading ?
         <div className='row justify-content-center py-5'>

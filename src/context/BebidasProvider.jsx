@@ -15,11 +15,13 @@ export default function BebidasProvider({children}) {
   const [ favoritos, setFavoritos ] = useState( JSON.parse(localStorage.getItem('bebidas')) || []);
 
   const [ alerta, setAlerta ] = useState('');
+  const [ checkFiltro, setCheckFiltro ] = useState('');
 
-  const obtenerBebidas = async (datos) => {
+
+  const obtenerBebidas = async (categoria) => {
     setLoading(true)
     try {
-      const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${datos.nombre}&c=${datos.categoria}`
+      const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${categoria}`
       const { data: { drinks } } = await axios(url);
       setBebidas(drinks)
     } catch (error) {
@@ -28,6 +30,20 @@ export default function BebidasProvider({children}) {
       setLoading(false)
     }
   }
+
+  const obtenerBebidasByIngrediente = async (ingrediente) => {
+    setLoading(true)
+    try {
+      const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingrediente}`
+      const { data: { drinks } } = await axios(url);
+      setBebidas(drinks)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
 
   const handleClickModal = () => {
     setModal(!modal)
@@ -73,6 +89,7 @@ export default function BebidasProvider({children}) {
     nombre: 'Jose',
     bebidas,
     obtenerBebidas,
+    obtenerBebidasByIngrediente,
     modal,
     handleClickModal,
     getBebidaById,
@@ -83,7 +100,9 @@ export default function BebidasProvider({children}) {
     favoritos,
     actionsToFavoriteLS,
     alerta, 
-    setAlerta
+    setAlerta,
+    checkFiltro,
+    setCheckFiltro
   }
 
   return (
