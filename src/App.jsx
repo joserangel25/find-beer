@@ -13,11 +13,12 @@ function App() {
     <>
     <CategoriaProvider>
       <BebidasProvider>
+        <main className="d-flex flex-column min-vh-100">
         <header className="py-5">
           <h1>Busca y Aprende a hacer tus Bebidas favoritas</h1>
         </header>
 
-        <Container className='mt-5'>
+        <Container className='mt-5 flex-grow-1'>
           <BrowserRouter>
             <Routes>
               <Route path='/' element={<Home />} />
@@ -35,6 +36,7 @@ function App() {
              {' '}Jose Rángel</a>
           </h3>
         </footer>
+        </main>
       </BebidasProvider>
     </CategoriaProvider>
     </>
